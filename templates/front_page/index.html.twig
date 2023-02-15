@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{# @controller App:FrontPage:index #}
+{% block title %}Artportalen{% endblock %}
+
+{% block body %}
+    <main>
+        <section>
+            <h1>Artportal</h1>
+            <div class="search">
+                <h3>Sök efter art</h3>
+                {{ form(find_species) }}
+            </div>
+        </section>
+        <section>
+            <h2>
+
+            </h2>
+        </section>
+    </main>
+{% endblock %}

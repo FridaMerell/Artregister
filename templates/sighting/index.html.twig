@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sighting index{% endblock %}
+
+{% block body %}
+    <h1>Sighting index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Location</th>
+                <th>DateTime</th>
+                <th>Comment</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sighting in sightings %}
+            <tr>
+                <td>{{ sighting.id }}</td>
+                <td>{{ sighting.Location }}</td>
+                <td>{{ sighting.DateTime ? sighting.DateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ sighting.Comment }}</td>
+                <td>
+                    <a href="{{ path('app_sighting_show', {'id': sighting.id}) }}">show</a>
+                    <a href="{{ path('app_sighting_edit', {'id': sighting.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_sighting_new') }}">Create new</a>
+{% endblock %}

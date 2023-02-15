@@ -1,0 +1,21 @@
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[1]!./assets/styles/app.css ***!
+  \**************************************************************************************************************/
+html {
+  margin: 0;
+  background: #0b1528;
+  font-family: "Segoe UI";
+  letter-spacing: 0.2px;
+  color: white;
+}
+
+form {
+  padding: 2rem;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+/*# sourceMappingURL=app.css.map */
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7QUFBQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7QUNDRjs7QURFQTtFQUNFO0VBQ0E7RUFDQTtBQ0NGOztBQUVBLGtDQUFrQyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2Fzc2V0cy9zdHlsZXMvYXBwLnNjc3MiLCJ3ZWJwYWNrOi8vLy4vYXNzZXRzL3N0eWxlcy9hcHAuY3NzIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9*/
