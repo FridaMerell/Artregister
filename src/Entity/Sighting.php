@@ -19,7 +19,7 @@ class Sighting
     #[ORM\JoinColumn(nullable: false)]
     private ?User $User;
 
-    #[ORM\ManyToOne(targetEntity: Species::class, inversedBy: 'sightings')]
+    #[ORM\ManyToOne(targetEntity: Species::class, inversedBy: 'Sightings')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Species $Species;
 

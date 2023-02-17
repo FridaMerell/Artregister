@@ -3,18 +3,21 @@
 {% block title %}Artportalen{% endblock %}
 
 {% block body %}
-    <main>
-        <section>
-            <h1>Artportal</h1>
-            <div class="search">
-                <h3>Sök efter art</h3>
-                {{ form(find_species) }}
-            </div>
-        </section>
-        <section>
-            <h2>
+	<main>
+		<section>
+			<h1>Artportal</h1>
+			<div data-controller="search" class="search">
+				<h3>Sök efter art</h3>
+				<input data-search-target="species" data-action="keyup->search#search">
+				<ul data-search-target="autocomplete_list">
+				</ul>
+				<div data-search-target="links"></div>
+			</div>
+		</section>
+		<section>
+			<h2>
 
-            </h2>
-        </section>
-    </main>
+			</h2>
+		</section>
+	</main>
 {% endblock %}

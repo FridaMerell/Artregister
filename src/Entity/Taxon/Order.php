@@ -34,7 +34,7 @@ class Order
     private ?TaxClass $Class;
 
     #[ORM\OneToMany(mappedBy: 'TaxOrder', targetEntity: Family::class, orphanRemoval: true)]
-    private ArrayCollection $Families;
+    private Collection $Families;
 
     public function __construct()
     {

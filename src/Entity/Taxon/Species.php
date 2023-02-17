@@ -11,129 +11,110 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SpeciesRepository::class)]
 class Species {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $id;
+	#[ORM\Id]
+	#[ORM\GeneratedValue]
+	#[ORM\Column(type: 'integer')]
+	private ?int $id;
+	#[ORM\Column(type: 'integer')]
+	#[Assert\NotNull]
+	private ?int $TaxonomyId;
+	#[ORM\Column(type: 'string', length: 255)]
+	#[Assert\NotNull]
+	private ?string $ScientificName;
+	#[ORM\Column(type: 'string', length: 255, nullable: true)]
+	private ?string $VernacularName;
+	#[ORM\ManyToOne(targetEntity: Genus::class, inversedBy: 'species')]
+	#[ORM\JoinColumn(nullable: true)]
+	#[Assert\NotNull]
+	private ?Genus $Genus;
+	private ?Family $Family;
+	#[ORM\OneToMany(mappedBy: 'Species', targetEntity: Sighting::class, orphanRemoval: true)]
+	private Collection $Sightings;
 
-    #[ORM\Column(type: 'integer')]
-    #[Assert\NotNull]
-    private ?int $TaxonomyId;
+	public function __construct(){
+		$this->Sightings = new ArrayCollection();
+	}
 
-    #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotNull]
-    private ?string $ScientificName;
+	function __toString(){
+		return (!empty($this->VernacularName)) ? $this->VernacularName : $this->ScientificName;
+	}
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $VernacularName;
+	public function getId(): ?int{
+		return $this->id;
+	}
 
-    #[ORM\ManyToOne(targetEntity: Genus::class, inversedBy: 'species')]
-    #[ORM\JoinColumn(nullable: true)]
-    #[Assert\NotNull]
-    private ?Genus $Genus;
+	public function getTaxonomyId(): ?int{
+		return $this->TaxonomyId;
+	}
 
-    private ?Family $Family;
+	public function setTaxonomyId(int $TaxonomyId): self{
+		$this->TaxonomyId = $TaxonomyId;
 
-    #[ORM\OneToMany(mappedBy: 'Species', targetEntity: Sighting::class, orphanRemoval: true)]
-    private ArrayCollection $sightings;
+		return $this;
+	}
 
-    #[ORM\ManyToOne(targetEntity: OrganismGroup::class, inversedBy: 'Species')]
-    private ?OrganismGroup $organismGroup;
+	public function getScientificName(): ?string{
+		return $this->ScientificName;
+	}
 
-    public function __construct() {
-        $this->sightings = new ArrayCollection();
-    }
+	public function setScientificName(string $ScientificName): self{
+		$this->ScientificName = $ScientificName;
 
+		return $this;
+	}
 
-    function __toString() {
-        return (!empty($this->VernacularName)) ? $this->VernacularName : $this->ScientificName;
-    }
+	public function getVernacularName(): ?string{
+		return $this->VernacularName;
+	}
 
-    public function getId(): ?int {
-        return $this->id;
-    }
+	public function setVernacularName(?string $VernacularName): self{
+		$this->VernacularName = $VernacularName;
 
-    public function getTaxonomyId(): ?int {
-        return $this->TaxonomyId;
-    }
+		return $this;
+	}
 
-    public function setTaxonomyId(int $TaxonomyId): self {
-        $this->TaxonomyId = $TaxonomyId;
+	public function getGenus(): ?Genus{
+		return $this->Genus;
+	}
 
-        return $this;
-    }
+	public function setGenus(?Genus $Genus): self{
+		$this->Genus = $Genus;
 
-    public function getScientificName(): ?string {
-        return $this->ScientificName;
-    }
+		return $this;
+	}
 
-    public function setScientificName(string $ScientificName): self {
-        $this->ScientificName = $ScientificName;
+	/**
+	 * @return Collection<int, Sighting>
+	 */
+	public function getSightings(): Collection{
+		return $this->Sightings;
+	}
 
-        return $this;
-    }
+	public function addSighting(Sighting $sighting): self{
+		if (!$this->Sightings->contains($sighting)) {
+			$this->Sightings[] = $sighting;
+			$sighting->setSpecies($this);
+		}
 
-    public function getVernacularName(): ?string {
-        return $this->VernacularName;
-    }
+		return $this;
+	}
 
-    public function setVernacularName(?string $VernacularName): self {
-        $this->VernacularName = $VernacularName;
+	public function removeSighting(Sighting $sighting): self{
+		if ($this->Sightings->removeElement($sighting)) {
+			// set the owning side to null (unless already changed)
+			if ($sighting->getSpecies() === $this) {
+				$sighting->setSpecies(null);
+			}
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function getGenus(): ?Genus {
-        return $this->Genus;
-    }
+	function getFullName(){
+		return "";
+	}
 
-    public function setGenus(?Genus $Genus): self {
-        $this->Genus = $Genus;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Sighting>
-     */
-    public function getSightings(): Collection {
-        return $this->sightings;
-    }
-
-    public function addSighting(Sighting $sighting): self {
-        if (!$this->sightings->contains($sighting)) {
-            $this->sightings[] = $sighting;
-            $sighting->setSpecies($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSighting(Sighting $sighting): self {
-        if ($this->sightings->removeElement($sighting)) {
-            // set the owning side to null (unless already changed)
-            if ($sighting->getSpecies() === $this) {
-                $sighting->setSpecies(null);
-            }
-        }
-
-        return $this;
-    }
-
-    function getFullName(){
-    return "";}
-
-    function getFamily(): ?Family {
-        return $this->Genus->getFamily();
-    }
-
-    public function getOrganismGroup(): ?OrganismGroup {
-        return $this->organismGroup;
-    }
-
-    public function setOrganismGroup(?OrganismGroup $organismGroup): self {
-        $this->organismGroup = $organismGroup;
-
-        return $this;
-    }
+	function getFamily(): ?Family{
+		return $this->Genus->getFamily();
+	}
 }

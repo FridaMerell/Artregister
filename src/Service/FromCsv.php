@@ -53,25 +53,20 @@ class FromCsv
     {
         $data = $this->encoder->decode($this->fileContent, 'csv', [CsvEncoder::DELIMITER_KEY => ';']);
         foreach ($data as $taxonomy) {
-            if (empty($taxonomy['TaxonId'])) continue;
+            if (empty($taxonomy['Taxon id'])) continue;
             $entityName = $this->getEntity($taxonomy['Taxonkategori']);
+
             if (!$entityName)
                 continue;
-
             $repo = $this->doctrine->getRepository($entityName);
-            if ($repo->findOneBy(array('TaxonomyId' => $taxonomy['TaxonId'])))
+            if ($repo->findOneBy(array('TaxonomyId' => $taxonomy['Taxon id'])))
                 continue;
 
             $entity = new $entityName;
-            $entity->setTaxonomyId($taxonomy['TaxonId']);
+            $entity->setTaxonomyId($taxonomy['Taxon id']);
             $entity->setVernacularName($taxonomy['Svenskt namn'] ?? null);
             $entity->setScientificName($taxonomy['Vetenskapligt namn']);
 
-            if (method_exists($entity, 'setKingdom'))
-                $entity->setKingdom($this->getRelatedEntity(Kingdom::class, $taxonomy['Rike']));
-
-            if (method_exists($entity, 'setStrain'))
-                $entity->setStrain($this->getRelatedEntity(Strain::class, $taxonomy['Stam']));
 
             if (method_exists($entity, 'setClass'))
                 $entity->setClass($this->getRelatedEntity(TaxClass::class, $taxonomy['Klass']));
@@ -98,9 +93,6 @@ class FromCsv
     {
 
         return match ($name) {
-            'Organismgrupp' => OrganismGroup::class,
-            'Rike' => Kingdom::class,
-            'Stam' => Strain::class,
             'Klass' => TaxClass::class,
             'Ordning' => Order::class,
             'Familj' => Family::class,

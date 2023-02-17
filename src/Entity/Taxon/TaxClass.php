@@ -9,122 +9,98 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TaxClassRepository::class)]
-class TaxClass
-{
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $id;
+class TaxClass {
+	#[ORM\Id]
+	#[ORM\GeneratedValue]
+	#[ORM\Column(type: 'integer')]
+	private ?int $id;
+	#[ORM\Column(type: 'integer')]
+	#[Assert\NotNull]
+	private ?int $TaxonomyId;
+	#[ORM\Column(type: 'string', length: 255)]
+	#[Assert\NotNull]
+	private ?string $ScientificName;
+	#[ORM\Column(type: 'string', length: 255, nullable: true)]
+	private ?string $VernacularName;
+	#[ORM\OneToMany(mappedBy: 'Class', targetEntity: Order::class, orphanRemoval: true)]
+	private Collection $orders;
 
-    #[ORM\Column(type: 'integer')]
-    #[Assert\NotNull]
-    private ?int $TaxonomyId;
+	public function __construct(){
+		$this->orders = new ArrayCollection();
+	}
 
-    #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotNull]
-    private ?string $ScientificName;
+	function __toString(){
+		return (!empty($this->VernacularName)) ? $this->VernacularName : $this->ScientificName;
+	}
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $VernacularName;
+	public function getId(): ?int{
+		return $this->id;
+	}
 
-    #[ORM\ManyToOne(targetEntity: Strain::class, inversedBy: 'taxClasses')]
-    #[ORM\JoinColumn(nullable: true)]
-    #[Assert\NotNull]
-    private ?Strain $Strain;
+	public function getTaxonomyId(): ?int{
+		return $this->TaxonomyId;
+	}
 
-    #[ORM\OneToMany(mappedBy: 'Class', targetEntity: Order::class, orphanRemoval: true)]
-    private ArrayCollection $orders;
+	public function setTaxonomyId(int $TaxonomyId): self{
+		$this->TaxonomyId = $TaxonomyId;
 
-    public function __construct()
-    {
-        $this->orders = new ArrayCollection();
-    }
+		return $this;
+	}
 
-    
-    function __toString() {
-        return (!empty($this->VernacularName)) ? $this->VernacularName : $this->ScientificName;
-    }
+	public function getScientificName(): ?string{
+		return $this->ScientificName;
+	}
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+	public function setScientificName(string $ScientificName): self{
+		$this->ScientificName = $ScientificName;
 
-    public function getTaxonomyId(): ?int
-    {
-        return $this->TaxonomyId;
-    }
+		return $this;
+	}
 
-    public function setTaxonomyId(int $TaxonomyId): self
-    {
-        $this->TaxonomyId = $TaxonomyId;
+	public function getVernacularName(): ?string{
+		return $this->VernacularName;
+	}
 
-        return $this;
-    }
+	public function setVernacularName(?string $VernacularName): self{
+		$this->VernacularName = $VernacularName;
 
-    public function getScientificName(): ?string
-    {
-        return $this->ScientificName;
-    }
+		return $this;
+	}
 
-    public function setScientificName(string $ScientificName): self
-    {
-        $this->ScientificName = $ScientificName;
+	public function getStrain(): ?Strain{
+		return $this->Strain;
+	}
 
-        return $this;
-    }
+	public function setStrain(?Strain $Strain): self{
+		$this->Strain = $Strain;
 
-    public function getVernacularName(): ?string
-    {
-        return $this->VernacularName;
-    }
+		return $this;
+	}
 
-    public function setVernacularName(?string $VernacularName): self
-    {
-        $this->VernacularName = $VernacularName;
+	/**
+	 * @return Collection<int, Order>
+	 */
+	public function getOrders(): Collection{
+		return $this->orders;
+	}
 
-        return $this;
-    }
+	public function addOrder(Order $order): self{
+		if (!$this->orders->contains($order)) {
+			$this->orders[] = $order;
+			$order->setClass($this);
+		}
 
-    public function getStrain(): ?Strain
-    {
-        return $this->Strain;
-    }
+		return $this;
+	}
 
-    public function setStrain(?Strain $Strain): self
-    {
-        $this->Strain = $Strain;
+	public function removeOrder(Order $order): self{
+		if ($this->orders->removeElement($order)) {
+			// set the owning side to null (unless already changed)
+			if ($order->getClass() === $this) {
+				$order->setClass(null);
+			}
+		}
 
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Order>
-     */
-    public function getOrders(): Collection
-    {
-        return $this->orders;
-    }
-
-    public function addOrder(Order $order): self
-    {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-            $order->setClass($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrder(Order $order): self
-    {
-        if ($this->orders->removeElement($order)) {
-            // set the owning side to null (unless already changed)
-            if ($order->getClass() === $this) {
-                $order->setClass(null);
-            }
-        }
-
-        return $this;
-    }
+		return $this;
+	}
 }

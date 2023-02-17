@@ -33,7 +33,7 @@ class Genus {
     private ?Family $Family;
 
     #[ORM\OneToMany(mappedBy: 'Genus', targetEntity: Species::class, orphanRemoval: true)]
-    private ArrayCollection $species;
+    private Collection $species;
 
     public function __construct() {
         $this->species = new ArrayCollection();

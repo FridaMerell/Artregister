@@ -9,13 +9,27 @@ html {
   color: white;
 }
 
-form {
+body main {
+  padding: 1rem 3rem;
+}
+body form {
   padding: 2rem;
   border: 1px solid white;
   border-radius: 5px;
+}
+body form label {
+  width: 100%;
+  display: block;
+  margin: 1rem 0 0;
+}
+body input {
+  background: transparent;
+  border: 1px solid white;
+  padding: 0.5rem 1rem;
+  color: white;
 }
 
 /*# sourceMappingURL=app.css.map */
 
 
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7QUFBQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7QUNDRjs7QURFQTtFQUNFO0VBQ0E7RUFDQTtBQ0NGOztBQUVBLGtDQUFrQyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2Fzc2V0cy9zdHlsZXMvYXBwLnNjc3MiLCJ3ZWJwYWNrOi8vLy4vYXNzZXRzL3N0eWxlcy9hcHAuY3NzIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9*/
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7QUFBQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7QUNDRjs7QURHRTtFQUNFO0FDQUo7QURHRTtFQUNFO0VBQ0E7RUFDQTtBQ0RKO0FER0k7RUFDRTtFQUNBO0VBQ0E7QUNETjtBREtFO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7QUNISjs7QUFFQSxrQ0FBa0MiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hc3NldHMvc3R5bGVzL2FwcC5zY3NzIiwid2VicGFjazovLy8uL2Fzc2V0cy9zdHlsZXMvYXBwLmNzcyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==*/
