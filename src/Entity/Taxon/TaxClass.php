@@ -67,15 +67,6 @@ class TaxClass {
 		return $this;
 	}
 
-	public function getStrain(): ?Strain{
-		return $this->Strain;
-	}
-
-	public function setStrain(?Strain $Strain): self{
-		$this->Strain = $Strain;
-
-		return $this;
-	}
 
 	/**
 	 * @return Collection<int, Order>
