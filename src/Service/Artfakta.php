@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Artportalen\Taxonomies;
+namespace App\Service\Taxonomies;
 
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
