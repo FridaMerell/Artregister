@@ -63,7 +63,7 @@
 /var/data.db
 
 /composer.lock
+/yarn.lock
 /docker-compose.override.yml
 /docker-compose.yml
 /public
-/public/build/
