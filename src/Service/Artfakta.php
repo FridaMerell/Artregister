@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Taxonomies;
+namespace App\Service;
 
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
@@ -11,7 +11,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  * API Integration for Artfakta
  * https://www.artdatabanken.se/sok-art-och-miljodata/oppna-data-och-apier/om-artdatabankens-apier/api-for-artinformation
  */
-class ArtFakta {
+class Artfakta {
 	const API_ENDPOINT = 'https://api.artdatabanken.se/information/v1/speciesdataservice/v1/speciesdata?taxa={taxa}';
 	const API_GETTEXT = 'https://api.artdatabanken.se/information/v1/speciesdataservice/v1/speciesdata/texts?taxa={taxa}';
 	const API_SUBSTRATES = 'https://api.artdatabanken.se/information/v1/speciesdataservice/v1/speciesdata/substrates?taxa={taxa}';

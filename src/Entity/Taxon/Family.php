@@ -27,7 +27,7 @@ class Family
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $VernacularName;
 
-    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'families')]
+    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'Families')]
     #[ORM\JoinColumn(nullable: true)]
     #[Assert\NotNull]
     private ?Order $TaxOrder;
