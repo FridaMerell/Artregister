@@ -34,7 +34,8 @@
 # Assets and user uploads
 /public/bundles/
 /public/uploads/
-/public/build
+/public/build/
+/public/build/*
 
 # PHPUnit
 /app/phpunit.xml
@@ -65,3 +66,4 @@
 /docker-compose.override.yml
 /docker-compose.yml
 /public
+/public/build/
