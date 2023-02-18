@@ -50,8 +50,10 @@ class SightingController extends AbstractController {
 
 	#[Route('/{id}', name: 'app_sighting_show', methods: ['GET'])]
 	public function show(Sighting $sighting): Response{
+		$species = $this->renderView('Partials/artfakta.html.twig', ['taxon' => $sighting->getSpecies()->getTaxonomyId()]);
 		return $this->render('sighting/show.html.twig', [
 			'sighting' => $sighting,
+			'species' => $species
 		]);
 	}
 
