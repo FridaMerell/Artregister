@@ -2,6 +2,36 @@
 
 {% block body %}
 	<h1>{{ species.vernacularName|capitalize }}</h1>
+	<section>
+		<table>
+			<tbody>
+			<tr>
+				<th>Artnamn</th>
+				<td>{{ species.fullName }}</td>
+			</tr>
+			<tr>
+				<th>Genus</th>
+				<td>{{ species.genus }}</td>
+			</tr>
+			<tr>
+				<th>Familj</th>
+				<td>{{ species.family }}</td>
+			</tr>
+			<tr>
+				<th>
+					Ordning
+				</th>
+				<td>
+					{{ species.family.taxOrder }}
+				</td>
+			</tr>
+			<tr>
+				<th>Klass</th>
+				<td>{{ species.family.taxOrder.class }}</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
 
-
+	{{ artfakta|raw }}
 {% endblock %}

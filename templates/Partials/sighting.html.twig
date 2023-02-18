@@ -1,0 +1,12 @@
+<div class="list-item">
+	<span>
+		{{ sighting.user.email }}
+	</span>
+	<span>
+		{{ sighting.species }}
+	</span>
+
+	<span class="links">
+		<a href="{{ path('app_sighting_show', {'id': sighting.id}) }}">Visa</a>
+	</span>
+</div>

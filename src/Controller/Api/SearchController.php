@@ -15,7 +15,7 @@ class SearchController extends AbstractController {
 		$query->where('qb.VernacularName LIKE :s OR qb.ScientificName LIKE :s')
 			->select('COUNT(s) AS HIDDEN sightings', 'qb')
 			->leftJoin('qb.Sightings', 's')
-			->orderBy('sightings')
+			->orderBy('sightings', 'DESC')
 			->groupBy('qb')
 			->setMaxResults(10)
 			->setParameter('s', "%{$s}%");

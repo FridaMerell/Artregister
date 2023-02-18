@@ -43,7 +43,7 @@ class Order
 
     
     function __toString() {
-        return (!empty($this->VernacularName)) ? $this->VernacularName : $this->ScientificName;
+		return "{$this->VernacularName}  ({$this->ScientificName})";
     }
     
     public function getId(): ?int

@@ -30,7 +30,7 @@ class TaxClass {
 	}
 
 	function __toString(){
-		return (!empty($this->VernacularName)) ? $this->VernacularName : $this->ScientificName;
+		return "{$this->VernacularName}  ({$this->ScientificName})";
 	}
 
 	public function getId(): ?int{
@@ -66,7 +66,6 @@ class TaxClass {
 
 		return $this;
 	}
-
 
 	/**
 	 * @return Collection<int, Order>

@@ -1,5 +1,8 @@
-{# @var sightings \App\Entity\Sighting #}
+{# @var sightings \App\Entity\Sighting[] #}
 {% block latest_sightings %}
-
-
+	<div class="container list">
+		{% for sighting in sightings %}
+			{% include "Partials/sighting.html.twig" %}
+		{% endfor %}
+	</div>
 {% endblock %}

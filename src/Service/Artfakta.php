@@ -18,18 +18,18 @@ class Artfakta {
 	/** @var int $taxa */
 	private $taxa;
 
-	function __construct(private readonly ContainerBagInterface $apisecret, private readonly HttpClientInterface $webclient){
+	function __construct(private readonly string $apisecret, private readonly HttpClientInterface $webclient){
 	}
 
 	function setTaxa(int $taxa): void{
 		$this->taxa = $taxa;
 	}
 
-	function getHeaders(): array{
+	private function getHeaders(): array{
 		return ['Ocp-Apim-Subscription-Key' => $this->apisecret];
 	}
 
-	function prepareEndpoint(string $endpoint): ?string{
+	private function prepareEndpoint(string $endpoint): ?string{
 		return str_replace('{taxa}', $this->taxa, $endpoint);
 
 		return null;

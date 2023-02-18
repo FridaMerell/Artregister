@@ -10,6 +10,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -55,6 +57,8 @@ class SightingController extends AbstractController {
 
 	#[Route('/{id}/edit', name: 'app_sighting_edit', methods: ['GET', 'POST'])]
 	public function edit(Request $request, Sighting $sighting, EntityManagerInterface $entityManager): Response{
+		if ($sighting->getUser() !== $this->getUser()) throw  new UnauthorizedHttpException();
+
 		$form = $this->createForm(SightingType::class, $sighting);
 		$form->handleRequest($request);
 
@@ -64,7 +68,7 @@ class SightingController extends AbstractController {
 			return $this->redirectToRoute('app_sighting_index', [], Response::HTTP_SEE_OTHER);
 		}
 
-		return $this->renderForm('sighting/edit.html.twig', [
+		return $this->render('sighting/edit.html.twig', [
 			'sighting' => $sighting,
 			'form' => $form,
 		]);
@@ -72,6 +76,8 @@ class SightingController extends AbstractController {
 
 	#[Route('/{id}', name: 'app_sighting_delete', methods: ['POST'])]
 	public function delete(Request $request, Sighting $sighting, EntityManagerInterface $entityManager): Response{
+		if ($sighting->getUser() !== $this->getUser()) throw  new UnauthorizedHttpException();
+
 		if ($this->isCsrfTokenValid('delete' . $sighting->getId(), $request->request->get('_token'))) {
 			$entityManager->remove($sighting);
 			$entityManager->flush();
