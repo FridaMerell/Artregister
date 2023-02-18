@@ -4,30 +4,59 @@ html {
   font-family: "Segoe UI";
   letter-spacing: 0.2px;
   color: white;
+  font-size: 18px;
 }
 
 body {
   main {
     padding: 1rem 3rem;
-  }
 
-  form {
-    padding: 2rem;
-    border: 1px solid white;
-    border-radius: 5px;
-
-    label {
-      width: 100%;
-      display: block;
-      margin: 1rem 0 0;
+    .container {
+      margin: 3rem 0;
     }
 
-  }
-  input {
-    background: transparent;
-    border: 1px solid white;
-    padding: 0.5rem 1rem;
-    color: white;
+    .list {
 
+      .list-item {
+        position: relative;
+
+        .sighting {
+
+        }
+
+      }
+
+      .list-item::before {
+        content: "Glutt:";
+        font-size: 80%;
+        top: -5px;
+        left: 0;
+        position: absolute;
+        transform: translateX(calc((-100% - 5px)));
+      }
+    }
+
+    form {
+      padding: 2rem;
+      border: 1px solid white;
+      border-radius: 5px;
+
+      label {
+        width: 100%;
+        display: block;
+        margin: 1rem 0 0;
+      }
+
+    }
+
+    input {
+      background: transparent;
+      border: 1px solid white;
+      padding: 0.5rem 1rem;
+      color: white;
+
+    }
   }
+
+
 }

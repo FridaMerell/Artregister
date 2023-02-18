@@ -4,22 +4,37 @@ html {
   font-family: "Segoe UI";
   letter-spacing: 0.2px;
   color: white;
+  font-size: 18px;
 }
 
 body main {
   padding: 1rem 3rem;
 }
-body form {
+body main .container {
+  margin: 3rem 0;
+}
+body main .list .list-item {
+  position: relative;
+}
+body main .list .list-item::before {
+  content: "Glutt:";
+  font-size: 80%;
+  top: -5px;
+  left: 0;
+  position: absolute;
+  transform: translateX(calc(-100% - 5px));
+}
+body main form {
   padding: 2rem;
   border: 1px solid white;
   border-radius: 5px;
 }
-body form label {
+body main form label {
   width: 100%;
   display: block;
   margin: 1rem 0 0;
 }
-body input {
+body main input {
   background: transparent;
   border: 1px solid white;
   padding: 0.5rem 1rem;

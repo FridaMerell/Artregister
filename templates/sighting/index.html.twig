@@ -3,37 +3,30 @@
 {% block title %}Sighting index{% endblock %}
 
 {% block body %}
-    <h1>Sighting index</h1>
+	<h1>Skådningar</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Location</th>
-                <th>DateTime</th>
-                <th>Comment</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sighting in sightings %}
-            <tr>
-                <td>{{ sighting.id }}</td>
-                <td>{{ sighting.Location }}</td>
-                <td>{{ sighting.DateTime ? sighting.DateTime|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ sighting.Comment }}</td>
-                <td>
-                    <a href="{{ path('app_sighting_show', {'id': sighting.id}) }}">show</a>
-                    <a href="{{ path('app_sighting_edit', {'id': sighting.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="container list">
+		{% for sighting in sightings %}
+			<div class="list-item">
+				<div class="sighting">
+						<span>{{ sighting.species.fullName }}</span>
+						<span>{{ sighting.location }}</span>
+						<span>{{ sighting.dateTime|date('Y-m-d') }}</span>
+						<span>{{ sighting.comment }}</span>
+				</div>
 
-    <a href="{{ path('app_sighting_new') }}">Create new</a>
+				<div class="links">
+					<a href="{{ path('app_sighting_show', {'id': sighting.id}) }}">Visa</a>
+					{% if sighting.user == app.user %}
+
+						<a href="{{ path('app_sighting_edit', {'id': sighting.id}) }}">Registera</a>
+					{% endif %}
+				</div>
+
+			</div>
+		{% else %}
+			<h2>no records found</h2>
+		{% endfor %}
+	</div>
+	<a href="{{ path('app_sighting_new') }}">Registrera nytt</a>
 {% endblock %}

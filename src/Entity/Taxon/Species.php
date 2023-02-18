@@ -110,8 +110,8 @@ class Species {
 		return $this;
 	}
 
-	function getFullName(){
-		return "";
+	function getFullName(): string{
+		return "{$this->VernacularName} ({$this->ScientificName})";
 	}
 
 	function getFamily(): ?Family{

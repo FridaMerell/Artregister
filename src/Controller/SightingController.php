@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/sighting')]
 class SightingController extends AbstractController {
@@ -22,20 +23,24 @@ class SightingController extends AbstractController {
 	}
 
 	#[Route('/new/{species}', name: 'app_sighting_new', methods: ['GET', 'POST'])]
+	#[IsGranted('ROLE_USER')]
 	public function new(Request $request, EntityManagerInterface $entityManager, Species $species = null): Response{
 		$sighting = new Sighting();
+		if ($species)
+			$sighting->setSpecies($species);
 
 		$form = $this->createForm(SightingType::class, $sighting);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+			$sighting->setUser($this->getUser());
 			$entityManager->persist($sighting);
 			$entityManager->flush();
 
 			return $this->redirectToRoute('app_sighting_index', [], Response::HTTP_SEE_OTHER);
 		}
 
-		return $this->renderForm('sighting/new.html.twig', [
+		return $this->render('sighting/new.html.twig', [
 			'sighting' => $sighting,
 			'form' => $form,
 		]);
