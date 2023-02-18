@@ -25,8 +25,9 @@
 		</tr>
 		</tbody>
 	</table>
+	<section>
 	{{ species|raw }}
-
+	</section>
 	<a href="{{ path('app_sighting_index') }}">back to list</a>
 
 	{% if sighting.user == app.user %}
