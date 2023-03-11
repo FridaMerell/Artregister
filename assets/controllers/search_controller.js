@@ -53,7 +53,7 @@ export default class extends Controller {
 		this.linksTarget.append(sightingButton)
 		let speciesButton = document.createElement('a')
 		speciesButton.className = 'button primary'
-		speciesButton.href = '/species/' + species.id
+		speciesButton.href = '/species/detail/' + species.id
 		speciesButton.textContent = 'Visa fågel'
 		this.linksTarget.append(speciesButton)
 	}
