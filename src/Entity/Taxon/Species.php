@@ -2,6 +2,7 @@
 
 namespace App\Entity\Taxon;
 
+use App\Entity\Card;
 use App\Entity\Sighting;
 use App\Repository\Taxon\SpeciesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -30,9 +31,15 @@ class Species {
 	private ?Family $Family;
 	#[ORM\OneToMany(mappedBy: 'Species', targetEntity: Sighting::class, orphanRemoval: true)]
 	private Collection $Sightings;
+	#[ORM\ManyToMany(targetEntity: Card::class, mappedBy: 'Species')]
+	#[ORM\JoinTable(name: 'card_species')]
+	private Collection $Cards;
+	#[ORM\Column(length: 255, nullable: true)]
+	private ?string $SwedishProminence = null;
 
 	public function __construct(){
 		$this->Sightings = new ArrayCollection();
+		$this->Cards = new ArrayCollection();
 	}
 
 	function __toString(){
@@ -116,5 +123,39 @@ class Species {
 
 	function getFamily(): ?Family{
 		return $this->Genus->getFamily();
+	}
+
+	/**
+	 * @return Collection<int, Card>
+	 */
+	public function getCards(): Collection{
+		return $this->Cards;
+	}
+
+	public function addCard(Card $card): self{
+		if (!$this->Cards->contains($card)) {
+			$this->Cards->add($card);
+			$card->addSpecies($this);
+		}
+
+		return $this;
+	}
+
+	public function removeCard(Card $card): self{
+		if ($this->Cards->removeElement($card)) {
+			$card->removeSpecies($this);
+		}
+
+		return $this;
+	}
+
+	public function getSwedishProminence(): ?string{
+		return $this->SwedishProminence;
+	}
+
+	public function setSwedishProminence(string $SwedishProminence): self{
+		$this->SwedishProminence = $SwedishProminence;
+
+		return $this;
 	}
 }

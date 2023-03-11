@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Entity\Taxon\Species;
 use App\Repository\SightingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 
 #[ORM\Entity(repositoryClass: SightingRepository::class)]
+#[ORM\Table(name:'taxon_species')]
 class Sighting
 {
     #[ORM\Id]
@@ -21,6 +24,7 @@ class Sighting
 
     #[ORM\ManyToOne(targetEntity: Species::class, inversedBy: 'Sightings')]
     #[ORM\JoinColumn(nullable: false)]
+	#[ORM\JoinTable(name:'sighting_species')]
     private ?Species $Species;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -31,6 +35,14 @@ class Sighting
 
     #[ORM\Column(type: 'string', length: 512, nullable: true)]
     private ?string $Comment;
+
+    #[ORM\ManyToMany(targetEntity: Card::class, mappedBy: 'Sightings')]
+    private Collection $Cards;
+
+    public function __construct()
+    {
+        $this->Cards = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -94,6 +106,33 @@ class Sighting
     public function setComment(?string $Comment): self
     {
         $this->Comment = $Comment;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Card>
+     */
+    public function getCards(): Collection
+    {
+        return $this->Cards;
+    }
+
+    public function addCard(Card $card): self
+    {
+        if (!$this->Cards->contains($card)) {
+            $this->Cards->add($card);
+            $card->addSighting($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCard(Card $card): self
+    {
+        if ($this->Cards->removeElement($card)) {
+            $card->removeSighting($this);
+        }
 
         return $this;
     }

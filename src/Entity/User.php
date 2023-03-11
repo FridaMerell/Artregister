@@ -31,9 +31,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
 	private Collection $Sightings;
 	#[ORM\Column(type: 'boolean')]
 	private $isVerified = false;
+	#[ORM\ManyToMany(targetEntity: Card::class, mappedBy: 'Subscribers')]
+	private Collection $Cards;
 
 	public function __construct(){
 		$this->Sightings = new ArrayCollection();
+		$this->Cards = new ArrayCollection();
 	}
 
 	function __toString(): string{
@@ -136,5 +139,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
 		$this->isVerified = $isVerified;
 
 		return $this;
+	}
+
+	/**
+	 * @return Collection<int, Card>
+	 */
+	public function getCards(): Collection{
+		return $this->Cards;
+	}
+
+	public function addCard(Card $card): self{
+		if (!$this->Cards->contains($card)) {
+			$this->Cards->add($card);
+			$card->addSubscriber($this);
+		}
+
+		return $this;
+	}
+
+	public function removeCard(Card $card): self{
+		if ($this->Cards->removeElement($card)) {
+			$card->removeSubscriber($this);
+		}
+
+		return $this;
+	}
+
+	function getActiveCards(): array{
+
 	}
 }

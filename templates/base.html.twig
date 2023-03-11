@@ -16,6 +16,12 @@
 </head>
 <body>
 <main>
+	<header>
+		<a href="{{ path('app_front_page') }}">Hem</a>
+		<a href="{{ path('app_taxon_species_list', {'p': '0'}) }}">Arter</a>
+		<a href="{{ path('app_login') }}">Logga in</a>
+		<a href="{{ path('app_register') }}">Registrera dig</a>
+	</header>
 	{% block body %}{% endblock %}
 </main>
 </body>

@@ -1,17 +1,71 @@
+body .container {
+  margin: 3rem 0;
+}
+body .flex {
+  display: flex;
+}
+body .flex.row {
+  flex-direction: row;
+  justify-content: space-between;
+}
+body .gap-3 {
+  gap: 3rem;
+}
+body .gap-6 {
+  gap: 6rem;
+}
+
 html {
   margin: 0;
-  background: #0b1528;
+  background: #2F5D62;
   font-family: "Segoe UI";
   letter-spacing: 0.2px;
   color: white;
   font-size: 18px;
 }
 
+header {
+  padding: 0.2rem 0 2rem 0;
+}
+
 body main {
   padding: 1rem 3rem;
 }
-body main .container {
-  margin: 3rem 0;
+body main h1, body main h2, body main h3, body main h4, body main h5 {
+  margin: 0;
+  font-weight: normal;
+}
+body main ul {
+  margin: 0.4rem 0;
+  padding: 0;
+  max-width: 100%;
+  counter-reset: index;
+  /* Element counter */
+  /* Element separation */
+}
+body main ul li {
+  counter-increment: index;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 90%;
+  padding: 0.4rem 0rem;
+}
+body main ul li::before {
+  content: counters(index, ".", decimal-leading-zero);
+  font-size: 120%;
+  text-align: right;
+  font-weight: bold;
+  padding-right: 12px;
+  font-variant-numeric: tabular-nums;
+  align-self: flex-start;
+  background-image: linear-gradient(to bottom, #DFEEEA, #5E8B7E);
+  background-attachment: fixed;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body main ul li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 body main .list .list-item {
   position: relative;
@@ -39,6 +93,26 @@ body main input {
   border: 1px solid white;
   padding: 0.5rem 1rem;
   color: white;
+}
+body main a {
+  display: inline-block;
+  color: white;
+  margin: 0 1rem;
+  text-decoration: unset;
+}
+body main a.arrow::after {
+  content: "";
+  display: inline-block;
+  background: currentColor;
+  width: 2rem;
+  height: 0.6em;
+  margin-left: 0.3rem;
+  mask-image: url(../images/arrow.svg);
+  -webkit-mask-image: url(../images/arrow.svg);
+  mask-position: center right;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center right;
+  -webkit-mask-repeat: no-repeat;
 }
 
 /*# sourceMappingURL=app.css.map */

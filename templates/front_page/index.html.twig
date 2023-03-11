@@ -3,22 +3,22 @@
 {% block title %}Artportalen{% endblock %}
 
 {% block body %}
-	<main>
-		<section>
+	<main class="flex row gap-6">
+		<section class="col-2">
 			<h1>Artportal</h1>
 			<div data-controller="search" class="search">
 				<h3>Sök efter art</h3>
 				<input data-search-target="species" data-action="keyup->search#search">
-				<ul data-search-target="autocomplete_list">
+				<ul class="autocomplete-results" data-search-target="autocomplete_list">
 				</ul>
 				<div data-search-target="links"></div>
 			</div>
 		</section>
-		<section>
+		<section class="col-2">
 			<h2>
 				Senaste glutt
 			</h2>
-			{% include 'Partials/LatestSightings.html.twig'   %}
+			{% include 'Partials/LatestSightings.html.twig' %}
 
 		</section>
 	</main>

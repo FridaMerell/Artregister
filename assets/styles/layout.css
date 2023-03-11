@@ -1,0 +1,18 @@
+body .container {
+  margin: 3rem 0;
+}
+body .flex {
+  display: flex;
+}
+body .flex.row {
+  flex-direction: row;
+  justify-content: space-between;
+}
+body .gap-3 {
+  gap: 3rem;
+}
+body .gap-6 {
+  gap: 6rem;
+}
+
+/*# sourceMappingURL=layout.css.map */

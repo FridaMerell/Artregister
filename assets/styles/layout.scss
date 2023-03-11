@@ -1,0 +1,21 @@
+body {
+
+  .container {
+    margin: 3rem 0;
+  }
+  .flex {
+    display: flex;
+  }
+
+  .flex.row {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .gap-3{
+    gap:3rem;
+  }
+  .gap-6{
+    gap:6rem;
+  }
+}

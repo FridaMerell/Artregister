@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	{% include 'Partials/filters.html.twig' %}
+	<ul>
+		{% for taxon in species %}
+			<li>
+				<div>
+				<div><h4>{{ taxon.VernacularName }}</h4></div>
+				<div><small>Svensk förekomst: {{ taxon.SwedishProminence }}</small></div>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

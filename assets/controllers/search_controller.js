@@ -40,6 +40,12 @@ export default class extends Controller {
 	async select(species) {
 		this.emptyResults()
 		this.linksTarget.innerHTML = ""
+
+		let name = document.createElement('h3')
+		name.textContent = species.vernacularName
+		this.linksTarget.append(name)
+
+
 		let sightingButton = document.createElement('a')
 		sightingButton.className = 'button primary'
 		sightingButton.href = '/sighting/new/' + species.id
