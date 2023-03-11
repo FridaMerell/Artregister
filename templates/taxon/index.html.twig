@@ -4,11 +4,18 @@
 	<ul>
 		{% for taxon in species %}
 			<li>
-				<div>
-				<div><h4>{{ taxon.VernacularName }}</h4></div>
-				<div><small>Svensk förekomst: {{ taxon.SwedishProminence }}</small></div>
+				<div class="species">
+					<div><h4>{{ taxon.VernacularName }}</h4>
+						<small>Svensk förekomst: {{ taxon.SwedishProminence }}</small></div>
+					<div>
+						<a href="{{ path('app_sighting_new', {'species': taxon.id}) }}" class="arrow">Registrera
+							glutt</a>
+						<a href="{{ path('app_species', {'species': taxon.id}) }}" class="arrow">Visa art</a>
+					</div>
 				</div>
 			</li>
 		{% endfor %}
 	</ul>
+
+	
 {% endblock %}

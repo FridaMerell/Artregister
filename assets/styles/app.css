@@ -67,6 +67,14 @@ body main ul li::before {
 body main ul li + li {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
+body main ul .species {
+  display: flex;
+  gap: 4rem;
+  justify-content: space-between;
+  width: max-content;
+  min-width: 50%;
+  align-content: center;
+}
 body main .list .list-item {
   position: relative;
 }

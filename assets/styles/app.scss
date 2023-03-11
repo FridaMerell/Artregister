@@ -63,6 +63,15 @@ body {
       li + li {
         border-top: 1px solid rgba(255, 255, 255, 0.2);
       }
+
+      .species{
+        display: flex;
+        gap:4rem;
+        justify-content: space-between;
+        width: max-content;
+        min-width: 50%;
+        align-content: center;
+      }
     }
 
     .list {
@@ -129,6 +138,8 @@ body {
       -webkit-mask-position: center right;
       -webkit-mask-repeat: no-repeat;
     }
+
+
   }
 
 
