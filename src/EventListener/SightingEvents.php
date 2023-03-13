@@ -40,6 +40,7 @@ class SightingEvents implements EventSubscriberInterface {
 
 		if (!empty($cards)) {
 			/** @var Card $card */
+
 			foreach ($cards as $card) {
 				if ($card->hasSpecies($sighting->getSpecies())) {
 					$card->addSighting($sighting);
