@@ -1,8 +1,25 @@
+
+html {
+  margin: 0;
+  background: #2F5D62;
+  font-family: "Segoe UI";
+  letter-spacing: 0.2px;
+  color: white;
+  font-size: 18px;
+}
+
+
 body {
+  main{
+
+    padding: 1rem 3rem;
+
+  }
 
   .container {
     margin: 3rem 0;
   }
+
   .flex {
     display: flex;
   }
@@ -12,10 +29,23 @@ body {
     justify-content: space-between;
   }
 
-  .gap-3{
-    gap:3rem;
+  .gap-3 {
+    gap: 3rem;
   }
-  .gap-6{
-    gap:6rem;
+
+  .gap-6 {
+    gap: 6rem;
+  }
+
+  @media screen and (max-width: 700px) {
+    main {
+      flex-flow: column wrap;
+      padding:1rem;
+    }
+
+    header{
+      display: flex;
+      flex-flow: column;
+    }
   }
 }

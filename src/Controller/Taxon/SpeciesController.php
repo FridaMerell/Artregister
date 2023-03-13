@@ -35,7 +35,7 @@ class SpeciesController extends AbstractController {
 
 		$species = $this->repository->createQueryBuilder('qb')
 			->setMaxResults($maxResults)
-			->setFirstResult(max(1, $p * 50))
+			->setFirstResult(max(0, $p * 50))
 			->orderBy($sort, 'ASC');
 
 		if ($swedish)
