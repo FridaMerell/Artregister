@@ -49,7 +49,11 @@ class Cards extends AbstractController {
 	}
 
 	#[Route('cards/{card}/delete')]
+	#[IsGranted('ROLE_USER')]
 	function delete(Card $card){
+		$subscribers = $card->getSubscribers();
+		if (!$subscribers->contains($this->getUser()))
+			return $this->createAccessDeniedException();
 		$this->repository->remove($card, true);
 		return $this->redirectToRoute('app_cards');
 	}
