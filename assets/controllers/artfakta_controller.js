@@ -20,8 +20,11 @@ export default class extends Controller {
 		let result = await axios.get('/api/artfakta/' + this.idValue)
 
 		const data = result.data[0].speciesData
-		this.characteristicsTarget.innerHTML = '<h3>Drag</h3>' + data.characteristic
-		this.ecologyTarget.innerHTML = '<h3>Ekologi</h3>' + data.ecology
+
+		if (data.speciesFactText.characteristic)
+			this.characteristicsTarget.innerHTML = '<h3>Drag</h3>' + data.speciesFactText.characteristic
+		if (data.speciesFactText.ecology)
+			this.ecologyTarget.innerHTML = '<h3>Ekologi</h3>' + data.speciesFactText.ecology
 	}
 
 
