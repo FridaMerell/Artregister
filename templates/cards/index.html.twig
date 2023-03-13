@@ -12,6 +12,7 @@
 				<div>
 					<div>{{ card.name }}</div>
 					<div>
+						<a href="{{ path('app_cards_cards_show', {'card': card.id}) }}" class="arrow">Visa</a>
 						<a href="{{ path('app_cards_cards_edit', {'card': card.id}) }}" class="arrow">Ändra</a>
 						<a href="{{ path('app_cards_cards_delete', {'card': card.id}) }}" class="arrow">Radera</a>
 					</div>

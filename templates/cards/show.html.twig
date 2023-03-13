@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<h1>{{ card.name }}</h1>
+	<div>
+		<h2>{{ card.sightings|length }} kryss, {{ card.species|length }} arter</h2>
+	</div>
+
+	<hr>
+	<h3>Glutt</h3>
+	<ul>
+		{% for sighting in card.sightings %}
+			<li>
+				<div>
+				<div>
+					<h3>{{ sighting.species.vernacularName }}</h3>
+					<small>{{ sighting.datetime|date('Y-m-d H:i') }}</small>
+				</div>
+					<a href="{{ path('app_sighting_show', {'id': sighting.id}) }}" class="arrow">Visa</a>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
+

@@ -62,6 +62,13 @@ class Cards extends AbstractController {
 		]);
 	}
 
+	#[Route('/cards/{card}/show')]
+	function show(Card $card){
+		return $this->render('cards/show.html.twig', [
+			'card' => $card
+		]);
+	}
+
 	#[Route(path: '/cards/{card}/print')]
 	function print(Card $card): Response{
 		return $this->render('cards/print.html.twig', [
