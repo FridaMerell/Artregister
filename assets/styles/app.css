@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body .container {
   margin: 3rem 0;
 }
@@ -15,6 +16,29 @@ body .gap-6 {
   gap: 6rem;
 }
 
+.print {
+  display: flex;
+  flex-wrap: wrap;
+}
+.print li {
+  width: max(100px, 15%);
+  padding: 0.1rem;
+}
+.print li:first-of-type {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.print li:before {
+  content: "▢";
+}
+
+@media print {
+  header {
+    display: none !important;
+  }
+  li {
+    color: black;
+  }
+}
 html {
   margin: 0;
   background: #2F5D62;
@@ -105,7 +129,6 @@ body main input {
 body main a {
   display: inline-block;
   color: white;
-  margin: 0 1rem;
   text-decoration: unset;
 }
 body main a.arrow::after {
@@ -121,6 +144,18 @@ body main a.arrow::after {
   mask-repeat: no-repeat;
   -webkit-mask-position: center right;
   -webkit-mask-repeat: no-repeat;
+  margin-right: 1rem;
+}
+body main a.button {
+  margin: 1rem 1rem 1rem 0;
+  padding: 0.6rem 2rem;
+  background: #172e2f;
+  color: white;
+}
+
+header {
+  display: flex;
+  gap: 2rem;
 }
 
 /*# sourceMappingURL=app.css.map */

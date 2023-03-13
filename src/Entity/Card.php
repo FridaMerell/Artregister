@@ -71,6 +71,10 @@ class Card {
 		return $this;
 	}
 
+	public function hasSpecies(Species $species): bool{
+		return $this->Species->contains($species);
+	}
+
 	/**
 	 * @return Collection<int, User>
 	 */

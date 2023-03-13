@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+	<ul class="print">
+		{% for species in card.species %}
+			<li>
+				{{ species.VernacularName }}
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
+

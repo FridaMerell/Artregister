@@ -30,17 +30,19 @@ class SpeciesController extends AbstractController {
 	function list(Request $request, int $p = 0): Response{
 		$sort = 'qb.VernacularName';
 		$maxResults = 50;
+		$search = $request->query->get('search');
+		$swedish = $request->query->get('swedish');
 
 		$species = $this->repository->createQueryBuilder('qb')
 			->setMaxResults($maxResults)
 			->setFirstResult(max(1, $p * 50))
 			->orderBy($sort, 'ASC');
 
-		if ($request->query->get('swedish'))
+		if ($swedish)
 			$species->andWhere('qb.SwedishProminence = :swed')
 				->setParameter('swed', 'Bofast och reproducerande');
 
-		if ($search = $request->query->get('search'))
+		if ($search)
 			$species->andWhere('qb.VernacularName LIKE :search')
 				->setParameter('search', "%{$search}%");
 
@@ -48,7 +50,10 @@ class SpeciesController extends AbstractController {
 			->getResult();
 
 		return $this->render('taxon/index.html.twig', [
-			'species' => $species
+			'species' => $species,
+			'p'		=>	$p,
+			'search'	=>	$search,
+			'swedish'	=>	$swedish
 		]);
 	}
 }

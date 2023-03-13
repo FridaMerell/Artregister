@@ -1,4 +1,5 @@
 @use 'layout';
+@use 'print';
 
 $background: #2F5D62;
 $primaryLight: #DFEEEA;
@@ -15,7 +16,7 @@ html {
 }
 
 header {
-  padding: 0.2rem 0  2rem 0;
+  padding: 0.2rem 0 2rem 0;
 }
 
 body {
@@ -64,9 +65,9 @@ body {
         border-top: 1px solid rgba(255, 255, 255, 0.2);
       }
 
-      .species{
+      .species {
         display: flex;
-        gap:4rem;
+        gap: 4rem;
         justify-content: space-between;
         width: max-content;
         min-width: 50%;
@@ -120,7 +121,6 @@ body {
     a {
       display: inline-block;
       color: white;
-      margin: 0 1rem;
       text-decoration: unset;
     }
 
@@ -137,10 +137,22 @@ body {
       mask-repeat: no-repeat;
       -webkit-mask-position: center right;
       -webkit-mask-repeat: no-repeat;
+      margin-right: 1rem;
     }
 
+    a.button {
+      margin: 1rem 1rem 1rem 0;
+      padding: 0.6rem 2rem;
+      background: #172e2f;
+      color: white;
+    }
 
   }
 
 
+}
+
+header {
+  display: flex;
+  gap: 2rem;
 }

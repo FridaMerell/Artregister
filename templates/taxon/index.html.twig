@@ -17,5 +17,10 @@
 		{% endfor %}
 	</ul>
 
-	
+	{% if p > 0 %}
+		<a href="{{ path('app_taxon_species_list', {'p': p - 1,'search' : search, 'swedish': swedish}) }}">Förgående
+			sida</a>
+	{% endif %}
+	<a href="{{ path('app_taxon_species_list', {'p': p +1, 'search' : search, 'swedish': swedish}) }}">Nästa sida</a>
+
 {% endblock %}

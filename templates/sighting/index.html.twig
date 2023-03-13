@@ -5,28 +5,29 @@
 {% block body %}
 	<h1>Skådningar</h1>
 
-	<div class="container list">
+	<ul>
 		{% for sighting in sightings %}
-			<div class="list-item">
-				<div class="sighting">
+			<li class="">
+				<div>
+					<div class="sighting">
 						<span>{{ sighting.species.fullName }}</span>
 						<span>{{ sighting.location }}</span>
 						<span>{{ sighting.dateTime|date('Y-m-d') }}</span>
 						<span>{{ sighting.comment }}</span>
+					</div>
+
+					<div class="links">
+						<a href="{{ path('app_sighting_show', {'id': sighting.id}) }}">Visa</a>
+						{% if sighting.user == app.user %}
+
+							<a href="{{ path('app_sighting_edit', {'id': sighting.id}) }}">Registera</a>
+						{% endif %}
+					</div>
 				</div>
-
-				<div class="links">
-					<a href="{{ path('app_sighting_show', {'id': sighting.id}) }}">Visa</a>
-					{% if sighting.user == app.user %}
-
-						<a href="{{ path('app_sighting_edit', {'id': sighting.id}) }}">Registera</a>
-					{% endif %}
-				</div>
-
-			</div>
+			</li>
 		{% else %}
 			<h2>no records found</h2>
 		{% endfor %}
-	</div>
+	</ul>
 	<a href="{{ path('app_sighting_new') }}">Registrera nytt</a>
 {% endblock %}

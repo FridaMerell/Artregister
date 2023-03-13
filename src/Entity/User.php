@@ -166,6 +166,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
 	}
 
 	function getActiveCards(): array{
+		$cards = [];
+		/** @var Card $card */
+		foreach ($this->Cards as $card) {
+			if (!$card->getEnds() && !$card->getStart())
+				$cards[] = $card;
+			if ($card->getStart() > new \DateTime() || $card->getEnds() < new \DateTime()) continue;
+		}
 
+		return $cards;
 	}
 }

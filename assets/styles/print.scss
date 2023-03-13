@@ -1,0 +1,28 @@
+.print {
+  display: flex;
+  flex-wrap: wrap;
+
+
+  li {
+    width: max(100px, 15%);
+    padding: 0.1rem
+  }
+
+  li:first-of-type {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  li:before{
+    content:'▢';
+  }
+}
+
+@media print {
+  header {
+    display: none !important;
+  }
+
+  li {
+    color: black
+  }
+}

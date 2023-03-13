@@ -1,0 +1,10 @@
+.print {
+  display: flex;
+  flex-flow: column wrap;
+  max-height: 99vh;
+}
+.print li {
+  width: max(300px, 25%);
+}
+
+/*# sourceMappingURL=print.css.map */
