@@ -1,0 +1,34 @@
+.species-data {
+
+  .taxonomy {
+    display: flex;
+    align-items: flex-start;
+    width: max-content;
+    padding: 1rem 0;
+
+    .hierarchy-tree {
+
+      margin: 1.0rem 0.5rem 0;
+
+      display: block;
+      width: 3rem;
+      height: 1rem;
+      border: solid white;
+      border-width: 1px 1px 0 0;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+
+    .taxonomy {
+      flex-flow: column;
+
+      .hierarchy-tree {
+        height: 0.7rem;
+        width: 2rem;
+        border-width: 0 0 1px 1px;
+      }
+    }
+
+  }
+}

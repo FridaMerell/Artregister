@@ -36,7 +36,7 @@ class SightingEvents implements EventSubscriberInterface {
 		if (!$sighting instanceof Sighting) return;
 		/** @var User $user */
 		$user = $this->tokenStorage->getToken()->getUser();
-		$cards = $user->getActiveCards();
+		$cards = $user->getActiveCards($sighting->getDateTime());
 
 		if (!empty($cards)) {
 			/** @var Card $card */

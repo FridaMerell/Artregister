@@ -17,6 +17,7 @@ return static function (RectorConfig $rectorConfig): void {
 
     // register a single rule
     $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
+
     $rectorConfig->import(SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES);
     $rectorConfig->import(\Rector\Doctrine\Set\DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES);
     // define sets of rules

@@ -11,7 +11,7 @@ class Artfakta extends AbstractController {
 	#[Route('/api/artfakta/{taxon}')]
 	function artfakta(int $taxon, Api $artfakta): JsonResponse{
 		$artfakta->setTaxa($taxon);
-		$information = $artfakta->getTexts();
+		$information = $artfakta->getData();
 		return $this->json($information);
 	}
 }

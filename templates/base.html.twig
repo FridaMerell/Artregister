@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>{% block title %}Welcome!{% endblock %}</title>
+	<title>{% block title %}Artregister{% endblock %}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 	<link rel="icon"
@@ -29,13 +29,28 @@
 			<a href="{{ path('app_cards') }}">Kort</a>
 		</div>
 		<div>
-			<a href="{{ path('app_login') }}">Logga in</a>
+			<a href="{{ path('app_sighting_index', {'p':0}) }}">Span</a>
 		</div>
-		<div>
-			<a href="{{ path('app_register') }}">Registrera dig</a>
-		</div>
+		{% if not app.user %}
+			<div>
+				<a href="{{ path('app_login') }}">Logga in</a>
+			</div>
+			<div>
+				<a href="{{ path('app_register') }}">Registrera dig</a>
+			</div>
+		{% else %}
+			<span>
+				<small>
+					Inloggad som:
+				</small>
+				{{ app.user.userIdentifier }}
+			</span>
+		{% endif %}
 	</header>
+
+
 	{% block body %}{% endblock %}
+
 </main>
 </body>
 </html>

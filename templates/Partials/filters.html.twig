@@ -1,11 +1,16 @@
 {% block filters %}
 	<aside data-controller="filters">
 		<form>
+			<h3>Filtrera</h3>
 			<label for="search">Sök</label>
-			<input type="search" name="search">
-			<label for="swedish">Endast med svensk förekomst
-			<input type="checkbox" name="swedish"></label>
-			<input type="submit">
+			<input type="search" name="search" value="{{ search }}">
+			{% set checked = swedish ? 'checked' : '' %}
+			<input type="checkbox" id="swedish" name="swedish" {{ checked }}>
+			<label for="swedish">
+				Endast med svensk förekomst
+			</label>
+			<input type="submit" value="Filtrera">
 		</form>
+		<hr>
 	</aside>
 {% endblock %}

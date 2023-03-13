@@ -17,10 +17,14 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/sighting')]
 class SightingController extends AbstractController {
-	#[Route('/', name: 'app_sighting_index', methods: ['GET'])]
-	public function index(SightingRepository $sightingRepository): Response{
+	#[Route('/list/{p}', name: 'app_sighting_index', methods: ['GET'])]
+	public function index(SightingRepository $sightingRepository, int $p = 0): Response{
+		$sightings = $sightingRepository->createQueryBuilder('qb')->setMaxResults(50);
+		if ($p > 0) {
+			$sightings->setFirstResult($p * 50);
+		}
 		return $this->render('sighting/index.html.twig', [
-			'sightings' => $sightingRepository->findAll(),
+			'sightings' => $sightings->getQuery()->getResult(),
 		]);
 	}
 

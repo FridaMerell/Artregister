@@ -165,13 +165,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
 		return $this;
 	}
 
-	function getActiveCards(): array{
+	function getActiveCards(?\DateTime $dateTime): array{
 		$cards = [];
+		if(!$dateTime)
+			$dateTime=new \DateTime();
 		/** @var Card $card */
 		foreach ($this->Cards as $card) {
 			if (!$card->getEnds() && !$card->getStart())
 				$cards[] = $card;
-			if ($card->getStart() > new \DateTime() || $card->getEnds() < new \DateTime()) continue;
+			if ($card->getStart() > $dateTime || $card->getEnds() < $dateTime) continue;
 			$cards[] = $card;
 		}
 		return $cards;

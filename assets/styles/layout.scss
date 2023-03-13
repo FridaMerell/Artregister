@@ -10,7 +10,7 @@ html {
 
 
 body {
-  main{
+  main {
 
     padding: 1rem 3rem;
 
@@ -23,6 +23,7 @@ body {
   .flex {
     display: flex;
   }
+
 
   .flex.row {
     flex-direction: row;
@@ -37,15 +38,37 @@ body {
     gap: 6rem;
   }
 
+  .my-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .my-1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .col-2 {
+    flex-basis: 50%;
+  }
+
   @media screen and (max-width: 700px) {
     main {
       flex-flow: column wrap;
-      padding:1rem;
+      padding: 0rem;
     }
 
-    header{
+    header {
       display: flex;
       flex-flow: column;
+    }
+
+    .s-column{
+      flex-flow: column wrap;
+    }
+
+    .col-2{
+      flex-basis: 100%;
     }
   }
 }

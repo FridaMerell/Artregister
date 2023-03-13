@@ -1,5 +1,7 @@
 @use 'layout';
 @use 'print';
+@use 'species';
+
 
 $background: #2F5D62;
 $primaryLight: #DFEEEA;
@@ -11,6 +13,12 @@ header {
 }
 
 body {
+
+  header {
+    display: flex;
+    gap: 2rem;
+  }
+
   main
   h1, h2, h3, h4, h5 {
     margin: 0;
@@ -59,7 +67,7 @@ body {
       gap: 4rem;
       justify-content: space-between;
       width: max-content;
-      min-width: 50%;
+      min-width: 58%;
       align-content: center;
     }
   }
@@ -86,14 +94,43 @@ body {
   }
 
   form {
-    padding: 2rem;
-    border: 1px solid white;
+    padding: 2rem 0;
     border-radius: 5px;
 
     label {
       width: 100%;
       display: block;
       margin: 1rem 0 0;
+    }
+
+    input[type=checkbox] {
+      display: none;
+    }
+
+    input[type=checkbox] ~ label {
+      border: 1px solid white;
+      padding: 0.4rem 0.7rem;
+      margin-bottom: 1rem;
+      width: max-content;
+      font-size: 80%;
+      cursor: pointer;
+    }
+
+    input[type=checkbox]:checked ~ label {
+      background: #172e2f;
+      border-color: #172e2f;
+    }
+
+    textarea {
+      width: 20rem;
+      padding: 0.6rem;
+      font-size: 80%;
+
+    }
+
+
+    .ts-wrapper {
+      width: 21.2rem;
     }
 
   }
@@ -129,7 +166,8 @@ body {
     margin-right: 1rem;
   }
 
-  a.button {
+  a.button, button {
+    border: unset;
     margin: 1rem 1rem 1rem 0;
     padding: 0.6rem 2rem;
     background: #172e2f;
@@ -138,8 +176,11 @@ body {
 
 }
 
-
-header {
-  display: flex;
-  gap: 2rem;
+@media screen and (max-width: 900px) {
+  body {
+    font-size: 14px;
+    header{
+      gap:0.5rem;
+    }
+  }
 }

@@ -1,13 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Sighting{% endblock %}
+{% block title %}Redigera glutt{% endblock %}
 
 {% block body %}
-    <h1>Edit Sighting</h1>
+	<h1>Redigera</h1>
 
-    {{ include('sighting/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_sighting_index') }}">back to list</a>
-
-    {{ include('sighting/_delete_form.html.twig') }}
+	{{ include('sighting/_form.html.twig', {'button_label': 'Uppdatera'}) }}
+	{{ include('sighting/_delete_form.html.twig') }}
 {% endblock %}

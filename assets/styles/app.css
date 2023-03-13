@@ -27,14 +27,31 @@ body .gap-3 {
 body .gap-6 {
   gap: 6rem;
 }
+body .my-2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+body .my-1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+body .col-2 {
+  flex-basis: 50%;
+}
 @media screen and (max-width: 700px) {
   body main {
     flex-flow: column wrap;
-    padding: 1rem;
+    padding: 0rem;
   }
   body header {
     display: flex;
     flex-flow: column;
+  }
+  body .s-column {
+    flex-flow: column wrap;
+  }
+  body .col-2 {
+    flex-basis: 100%;
   }
 }
 
@@ -61,10 +78,39 @@ body .gap-6 {
     color: black;
   }
 }
+.species-data .taxonomy {
+  display: flex;
+  align-items: flex-start;
+  width: max-content;
+  padding: 1rem 0;
+}
+.species-data .taxonomy .hierarchy-tree {
+  margin: 1rem 0.5rem 0;
+  display: block;
+  width: 3rem;
+  height: 1rem;
+  border: solid white;
+  border-width: 1px 1px 0 0;
+}
+@media screen and (max-width: 800px) {
+  .species-data .taxonomy {
+    flex-flow: column;
+  }
+  .species-data .taxonomy .hierarchy-tree {
+    height: 0.7rem;
+    width: 2rem;
+    border-width: 0 0 1px 1px;
+  }
+}
+
 header {
   padding: 0.2rem 0 2rem 0;
 }
 
+body header {
+  display: flex;
+  gap: 2rem;
+}
 body main h1, body h2, body h3, body h4, body h5 {
   margin: 0;
   font-weight: normal;
@@ -106,7 +152,7 @@ body ul .species {
   gap: 4rem;
   justify-content: space-between;
   width: max-content;
-  min-width: 50%;
+  min-width: 58%;
   align-content: center;
 }
 body .list .list-item {
@@ -121,14 +167,36 @@ body .list .list-item::before {
   transform: translateX(calc(-100% - 5px));
 }
 body form {
-  padding: 2rem;
-  border: 1px solid white;
+  padding: 2rem 0;
   border-radius: 5px;
 }
 body form label {
   width: 100%;
   display: block;
   margin: 1rem 0 0;
+}
+body form input[type=checkbox] {
+  display: none;
+}
+body form input[type=checkbox] ~ label {
+  border: 1px solid white;
+  padding: 0.4rem 0.7rem;
+  margin-bottom: 1rem;
+  width: max-content;
+  font-size: 80%;
+  cursor: pointer;
+}
+body form input[type=checkbox]:checked ~ label {
+  background: #172e2f;
+  border-color: #172e2f;
+}
+body form textarea {
+  width: 20rem;
+  padding: 0.6rem;
+  font-size: 80%;
+}
+body form .ts-wrapper {
+  width: 21.2rem;
 }
 body input {
   background: transparent;
@@ -156,16 +224,21 @@ body a.arrow::after {
   -webkit-mask-repeat: no-repeat;
   margin-right: 1rem;
 }
-body a.button {
+body a.button, body button {
+  border: unset;
   margin: 1rem 1rem 1rem 0;
   padding: 0.6rem 2rem;
   background: #172e2f;
   color: white;
 }
 
-header {
-  display: flex;
-  gap: 2rem;
+@media screen and (max-width: 900px) {
+  body {
+    font-size: 14px;
+  }
+  body header {
+    gap: 0.5rem;
+  }
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -39,8 +39,11 @@ class SpeciesController extends AbstractController {
 			->orderBy($sort, 'ASC');
 
 		if ($swedish)
-			$species->andWhere('qb.SwedishProminence = :swed')
-				->setParameter('swed', 'Bofast och reproducerande');
+			$species->andWhere('qb.SwedishProminence IN (:swed)')
+				->setParameter('swed', ['Bofast och reproducerande',
+					'Regelbunden förekomst, ej reproducerande',
+					'Ej bofast men tillfälligt reproducerande',
+					'Tillfällig förekomst (alt. kvarstående)']);
 
 		if ($search)
 			$species->andWhere('qb.VernacularName LIKE :search')
@@ -51,9 +54,9 @@ class SpeciesController extends AbstractController {
 
 		return $this->render('taxon/index.html.twig', [
 			'species' => $species,
-			'p'		=>	$p,
-			'search'	=>	$search,
-			'swedish'	=>	$swedish
+			'p' => $p,
+			'search' => $search,
+			'swedish' => $swedish
 		]);
 	}
 }
